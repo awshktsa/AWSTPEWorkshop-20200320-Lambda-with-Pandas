@@ -1,3 +1,4 @@
+
 # AWSTPEWorkshop-20200320-Lambda-with-Pandas
 This workshop will show you how to use Pandas lib in your Lambda function, which implement with Lambda layer.
 
@@ -34,10 +35,12 @@ zip -r my-pandas23-layer.zip .
 </pre></code>
 
 ### d. Create Lambda layer in AWS
+1. Create a new AWS Lambda Layer
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/01.png)
 
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/02.png)
 
+2. Input **my-pandas23-layer** as your Layer name, and then upload your my-pandas23-layer.zip file. In the end, select **python 3.6** as runtime.
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/03.png)
 
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/04.png)
@@ -47,18 +50,22 @@ zip -r my-pandas23-layer.zip .
 ## 2. Use Lambda layers into functions
 Use required Lambda layers into your Lambda functions
 
+### a. Creating Lambda function with Lambda Layer
+Creating Lambda function and using build-in Lambda layer and customized layer you created.
+
+1. Create a new Lambda function called **pandas-sample**. 
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/05.png)
 
+2. Add new Layer to this function
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/06.png)
 
+3. Add AWS provided **AWSLambda-Python36-SciPy1x**
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/07.png)
 
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/08.png)
 
+4. Add your layer **my-pandas23-layer**
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/09.png)
-
-### a. Creating Lambda function with Lambda Layer
-Creating Lambda function and using build-in Lambda layer and customed layer you created.
 
 ### b. Testing Lambda function
 Testing Lambda function working like expected.
