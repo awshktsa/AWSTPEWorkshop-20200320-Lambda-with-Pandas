@@ -1,13 +1,23 @@
 
+
 # AWSTPEWorkshop-20200320-Lambda-with-Pandas
 This workshop will show you how to use Pandas lib in your Lambda function, which implement with Lambda layer.
 
 ----
-## 1. Create a Lambda Layer
+## 1. Prepare environment
+
+### a. Create a cloud9 environment
+![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/10.png)
+
+![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/11.png)
+
+
+----
+## 2. Create a Lambda Layer
 Create a new Lambda Layer which include Pandas and required python lib.
 
 ### a. Create an **required.txt** file 
-Create an **required.txt** file for pip to install selected lib from file.
+Create an **requirement.txt** file for pip to install selected lib from file.
 
 <pre><code>pandas==0.23.4
 pytz==2018.7
@@ -15,15 +25,15 @@ pytz==2018.7
 
 ### b. Create and run script to prepare required resources
 Next, create an script called **prepare_layer_packages.sh**
-
+https://aws.amazon.com/tw/premiumsupport/knowledge-center/lambda-layer-simulated-docker/
 <pre><code>#!/bin/bash
 
-export DIR="pandas-layer"
+export DIR="python"
 
 rm -rf ${DIR} && mkdir -p ${DIR}
 
 docker run --rm -v $(pwd):/foo -w /foo lambci/lambda:build-python3.6 \
-    pip install -r required.txt --no-deps -t ${DIR}
+    pip install -r requirement.txt --no-deps -t ${DIR}
 </pre></code>
 
 ### c. Package files
@@ -47,7 +57,7 @@ zip -r my-pandas23-layer.zip .
 
 ----
 
-## 2. Use Lambda layers into functions
+## 3. Use Lambda layers into functions
 Use required Lambda layers into your Lambda functions
 
 ### a. Creating Lambda function with Lambda Layer
@@ -68,8 +78,8 @@ Creating Lambda function and using build-in Lambda layer and customized layer yo
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/09.png)
 
 ### b. Testing Lambda function
-Testing Lambda function working like expected.
 
+1. Testing Lambda function working like expected.
 <pre><code>import json
 
 import numpy as np
@@ -85,3 +95,9 @@ def lambda_handler(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 </code></pre>
+
+2. Config a test event
+![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/12.png)
+
+3. Test your Lambda function with Lambda Layer
+![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/13.png)
