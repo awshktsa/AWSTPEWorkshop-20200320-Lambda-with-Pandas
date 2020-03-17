@@ -7,25 +7,32 @@ This workshop will show you how to use Pandas lib in your Lambda function, which
 ## 1. Prepare environment
 
 ### a. Create a cloud9 environment
+1. Start to create AWS Cloud9
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/10.png)
 
+2. Name environment
 ![Image](https://github.com/awshktsa/AWSTPEWorkshop-20200320-Lambda-with-Pandas/blob/master/assets/11.png)
 
+3. Configure settings
+Leave all setting as default and click **Next Step** 
+
+4. Review
+Click **Create environment** to create you Cloud9 environment 
 
 ----
 ## 2. Create a Lambda Layer
 Create a new Lambda Layer which include Pandas and required python lib.
 
 ### a. Create an **required.txt** file 
-Create an **requirement.txt** file for pip to install selected lib from file.
+Create an **requirement.txt** file for pip to install selected lib from file, with **File > New File** File in navigation bar. 
 
 <pre><code>pandas==0.23.4
 pytz==2018.7
 </pre></code>
 
 ### b. Create and run script to prepare required resources
-Next, create an script called **prepare_layer_packages.sh**
-https://aws.amazon.com/tw/premiumsupport/knowledge-center/lambda-layer-simulated-docker/
+Next, create an script called **prepare_layer_packages.sh**  with **File > New File** File in navigation bar. 
+
 <pre><code>#!/bin/bash
 
 export DIR="python"
@@ -36,8 +43,9 @@ docker run --rm -v $(pwd):/foo -w /foo lambci/lambda:build-python3.6 \
     pip install -r requirement.txt --no-deps -t ${DIR}
 </pre></code>
 
-### c. Package files
-Run command as following
+https://aws.amazon.com/tw/premiumsupport/knowledge-center/lambda-layer-simulated-docker/
+### c. Package files and download it
+Run command as following in your terminal. And then download the **my-pandas23-layer.zip**  in your environment panel and right click it and then Download it.
 
 <pre><code>chmod +x prepare_layer_packages.sh
 ./prepare_layer_packages.sh
