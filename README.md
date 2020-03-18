@@ -30,7 +30,7 @@ Create an **requirement.txt** file for pip to install selected lib from file, wi
 pytz==2018.7
 </pre></code>
 
-### b. Create and run script to prepare required resources
+### b. Create a script to run and prepare required resources
 Next, create an script called **prepare_layer_packages.sh**  with **File > New File** File in navigation bar. 
 
 <pre><code>#!/bin/bash
